@@ -1,0 +1,104 @@
+---
+swagger: "2.0"
+info:
+  description: "API of Customer."
+  version: "1.0"
+  title: "Customer API"
+host: "api.brazil.bayer.com"
+basePath: "/customer/api/v1/"
+tags:
+- name: "Customer"
+  description: "Customer related operations"
+schemes:
+- "http"
+paths:
+  /customers:
+    get:
+      tags:
+      - "customers"
+      description: "Get Customers by ID"
+      operationId: "customersGET"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Customer"
+        400:
+          description: "Malformed request."
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "This request requires authentication."
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Request denied."
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Customer not found."
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Server internal error."
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customers"
+    post:
+      tags:
+      - "customers"
+      description: "Create a new customer"
+      operationId: "customersPOST"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Customer"
+        400:
+          description: "Malformed request."
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "This request requires authentication."
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Request denied."
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal server error."
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Customers"
+definitions:
+  Error:
+    properties:
+      result:
+        type: "string"
+        example: "Error on Customer Operations."
+      status:
+        type: "string"
+        example: "ERROR"
+      details:
+        type: "string"
+        example: "The path param is not a numeric type."
+  Customer:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        example: 0
+        description: "The unique code"
+      name:
+        type: "string"
+        example: "0"
+        description: "The name of customer"
+      jobTitle:
+        type: "string"
+        description: "The job title of customer"
+externalDocs:
+  description: "Find more info here"
+  url: "https://swagger.io"
